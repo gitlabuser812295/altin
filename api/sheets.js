@@ -40,11 +40,11 @@ export default async function handler(req, res) {
     
     const data = await response.json();
     
-    // Başarılı yanıt
+    // **DEĞİŞİKLİK BURADA: Orijinal Google Sheets API yapısını aynen koruyoruz**
     return res.status(200).json({
-      success: true,
-      data: data.values || [],
-      range: data.range || 'mardin!A1:C18'
+      range: data.range,
+      majorDimension: data.majorDimension || 'ROWS',
+      values: data.values || []
     });
     
   } catch (error) {
