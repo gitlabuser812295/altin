@@ -687,80 +687,80 @@ if ( yr &lt; 2000 ) yr += 1900;
       <meta http-equiv="refresh" content="6000" />
       <!--javascript start -->
 <script>
-// Basit ve temiz API çağrısı
 async function loadAltinFiyatlari() {
     try {
         const response = await fetch('/api/sheets');
         const veri = await response.json();
         
-        if (veri.values) {
+        // BURASI DEĞİŞTİ: veri.data kullan (veri.values değil!)
+        if (veri.data && veri.data.length > 0) {
             // Harem Altın (satır 1)
-            document.getElementById('haremalisi').textContent = veri.values[1][1] || '0';
-            document.getElementById('haremsatisi').textContent = veri.values[1][2] || '0';
+            document.getElementById('haremalisi').textContent = veri.data[1][1] || '0';
+            document.getElementById('haremsatisi').textContent = veri.data[1][2] || '0';
             
             // Has (satır 2)
-            document.getElementById('halisi').textContent = veri.values[2][1] || '0';
-            document.getElementById('hsatisi').textContent = veri.values[2][2] || '0';
+            document.getElementById('halisi').textContent = veri.data[2][1] || '0';
+            document.getElementById('hsatisi').textContent = veri.data[2][2] || '0';
             
             // Tel (satır 3)
-            document.getElementById('telalisi').textContent = veri.values[3][1] || '0';
-            document.getElementById('telsatisi').textContent = veri.values[3][2] || '0';
+            document.getElementById('telalisi').textContent = veri.data[3][1] || '0';
+            document.getElementById('telsatisi').textContent = veri.data[3][2] || '0';
             
             // Mega (satır 4)
-            document.getElementById('megalisi').textContent = veri.values[4][1] || '0';
-            document.getElementById('megsatisi').textContent = veri.values[4][2] || '0';
+            document.getElementById('megalisi').textContent = veri.data[4][1] || '0';
+            document.getElementById('megsatisi').textContent = veri.data[4][2] || '0';
             
             // İşçilikli (satır 5)
-            document.getElementById('kapalisi').textContent = veri.values[5][1] || '0';
-            document.getElementById('kapsatisi').textContent = veri.values[5][2] || '0';
+            document.getElementById('kapalisi').textContent = veri.data[5][1] || '0';
+            document.getElementById('kapsatisi').textContent = veri.data[5][2] || '0';
             
             // 14 Ayar (satır 6)
-            document.getElementById('14alisi').textContent = veri.values[6][1] || '0';
-            document.getElementById('14satisi').textContent = veri.values[6][2] || '0';
+            document.getElementById('14alisi').textContent = veri.data[6][1] || '0';
+            document.getElementById('14satisi').textContent = veri.data[6][2] || '0';
             
             // Beşli (satır 7)
-            document.getElementById('besalisi').textContent = veri.values[7][1] || '0';
-            document.getElementById('bessatisi').textContent = veri.values[7][2] || '0';
+            document.getElementById('besalisi').textContent = veri.data[7][1] || '0';
+            document.getElementById('bessatisi').textContent = veri.data[7][2] || '0';
             
             // Tam Ata (satır 8)
-            document.getElementById('tlalisi').textContent = veri.values[8][1] || '0';
-            document.getElementById('tlsatisi').textContent = veri.values[8][2] || '0';
+            document.getElementById('tlalisi').textContent = veri.data[8][1] || '0';
+            document.getElementById('tlsatisi').textContent = veri.data[8][2] || '0';
             
             // Tam Ziynet (satır 9)
-            document.getElementById('tzalisi').textContent = veri.values[9][1] || '0';
-            document.getElementById('tzsatisi').textContent = veri.values[9][2] || '0';
+            document.getElementById('tzalisi').textContent = veri.data[9][1] || '0';
+            document.getElementById('tzsatisi').textContent = veri.data[9][2] || '0';
             
             // Yarım (satır 10)
-            document.getElementById('yalisi').textContent = veri.values[10][1] || '0';
-            document.getElementById('ysatisi').textContent = veri.values[10][2] || '0';
+            document.getElementById('yalisi').textContent = veri.data[10][1] || '0';
+            document.getElementById('ysatisi').textContent = veri.data[10][2] || '0';
             
             // Çeyrek (satır 11)
-            document.getElementById('calisi').textContent = veri.values[11][1] || '0';
-            document.getElementById('csatisi').textContent = veri.values[11][2] || '0';
+            document.getElementById('calisi').textContent = veri.data[11][1] || '0';
+            document.getElementById('csatisi').textContent = veri.data[11][2] || '0';
             
             // Reşat Yarım (satır 12)
-            document.getElementById('rsyalisi').textContent = veri.values[12][1] || '0';
-            document.getElementById('rsysatisi').textContent = veri.values[12][2] || '0';
+            document.getElementById('rsyalisi').textContent = veri.data[12][1] || '0';
+            document.getElementById('rsysatisi').textContent = veri.data[12][2] || '0';
             
             // Reşat Çeyrek (satır 13)
-            document.getElementById('rscalisi').textContent = veri.values[13][1] || '0';
-            document.getElementById('rscsatisi').textContent = veri.values[13][2] || '0';
+            document.getElementById('rscalisi').textContent = veri.data[13][1] || '0';
+            document.getElementById('rscsatisi').textContent = veri.data[13][2] || '0';
             
             // Gram Altın (satır 14)
-            document.getElementById('gralisi').textContent = veri.values[14][1] || '0';
-            document.getElementById('grsatisi').textContent = veri.values[14][2] || '0';
+            document.getElementById('gralisi').textContent = veri.data[14][1] || '0';
+            document.getElementById('grsatisi').textContent = veri.data[14][2] || '0';
             
             // Ons (satır 15)
-            document.getElementById('onsalisi').textContent = veri.values[15][1] || '0';
-            document.getElementById('onssatisi').textContent = veri.values[15][2] || '0';
+            document.getElementById('onsalisi').textContent = veri.data[15][1] || '0';
+            document.getElementById('onssatisi').textContent = veri.data[15][2] || '0';
             
             // Dolar (satır 16)
-            document.getElementById('dolaralisi').textContent = veri.values[16][1] || '0';
-            document.getElementById('dolarsatisi').textContent = veri.values[16][2] || '0';
+            document.getElementById('dolaralisi').textContent = veri.data[16][1] || '0';
+            document.getElementById('dolarsatisi').textContent = veri.data[16][2] || '0';
             
             // Euro (satır 17)
-            document.getElementById('euroalisi').textContent = veri.values[17][1] || '0';
-            document.getElementById('eurosatisi').textContent = veri.values[17][2] || '0';
+            document.getElementById('euroalisi').textContent = veri.data[17][1] || '0';
+            document.getElementById('eurosatisi').textContent = veri.data[17][2] || '0';
             
             // Başarılı mesajı
             document.getElementById('fiyat_zaman_doviz').innerHTML = 
@@ -773,12 +773,9 @@ async function loadAltinFiyatlari() {
     }
 }
 
-// Sayfa açıldığında çalıştır
 document.addEventListener('DOMContentLoaded', loadAltinFiyatlari);
-
-// Her 60 saniyede bir yenile
 setInterval(loadAltinFiyatlari, 60000);
-      </script>
+</script>
       <div style="display: yes">
         <div id="satir1">
           <div id="baslik">
