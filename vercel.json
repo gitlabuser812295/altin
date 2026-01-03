@@ -1,17 +1,20 @@
 {
-  "rewrites": [
-    { "source": "/api/sheets", "destination": "/api/sheets.js" }
-  ],
-  "headers": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
-      ]
+      "src": "api/sheets.js",
+      "use": "@vercel/node"
     }
   ],
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "framework": null
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/api/sheets",
+      "dest": "/api/sheets.js",
+      "methods": ["GET", "OPTIONS"]
+    }
+  ]
 }
