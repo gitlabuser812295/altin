@@ -692,75 +692,106 @@ async function loadAltinFiyatlari() {
         const response = await fetch('/api/sheets');
         const veri = await response.json();
         
-        // BURASI DEĞİŞTİ: veri.data kullan (veri.values değil!)
         if (veri.data && veri.data.length > 0) {
-            // Harem Altın (satır 1)
-            document.getElementById('haremalisi').textContent = veri.data[1][1] || '0';
-            document.getElementById('haremsatisi').textContent = veri.data[1][2] || '0';
+            // Harem Altın fiyatını al (ana çarpan)
+            const haremAlis = parseFloat(veri.data[1][1]); // 6290
+            const haremSatis = parseFloat(veri.data[1][2]); // 6328
             
-            // Has (satır 2)
-            document.getElementById('halisi').textContent = veri.data[2][1] || '0';
-            document.getElementById('hsatisi').textContent = veri.data[2][2] || '0';
+            // HAREKETLİ ÇARPMA İŞLEMLERİ:
+            // Harem altını çarpanlarla çarp!
             
-            // Tel (satır 3)
-            document.getElementById('telalisi').textContent = veri.data[3][1] || '0';
-            document.getElementById('telsatisi').textContent = veri.data[3][2] || '0';
+            // Has (satır 2) - ÇEKME HAS
+            const hasCarpanAlis = parseFloat(veri.data[2][1]); // 0.998
+            const hasCarpanSatis = parseFloat(veri.data[2][2]); // 1.0015
+            document.getElementById('halisi').textContent = Math.round(haremAlis * hasCarpanAlis);
+            document.getElementById('hsatisi').textContent = Math.round(haremSatis * hasCarpanSatis);
             
-            // Mega (satır 4)
-            document.getElementById('megalisi').textContent = veri.data[4][1] || '0';
-            document.getElementById('megsatisi').textContent = veri.data[4][2] || '0';
+            // Tel (satır 3) - BURMA
+            const telCarpanAlis = parseFloat(veri.data[3][1]); // 0.9092
+            const telCarpanSatis = parseFloat(veri.data[3][2]); // 0.940
+            document.getElementById('telalisi').textContent = Math.round(haremAlis * telCarpanAlis);
+            document.getElementById('telsatisi').textContent = Math.round(haremSatis * telCarpanSatis);
             
-            // İşçilikli (satır 5)
-            document.getElementById('kapalisi').textContent = veri.data[5][1] || '0';
-            document.getElementById('kapsatisi').textContent = veri.data[5][2] || '0';
+            // Mega (satır 4) - CNC BİLEZİK
+            const megaCarpanAlis = parseFloat(veri.data[4][1]); // 0.9092
+            const megaCarpanSatis = parseFloat(veri.data[4][2]); // 0.950
+            document.getElementById('megalisi').textContent = Math.round(haremAlis * megaCarpanAlis);
+            document.getElementById('megsatisi').textContent = Math.round(haremSatis * megaCarpanSatis);
+            
+            // İşçilikli (satır 5) - FANTAZİ
+            const iscilikliCarpanAlis = parseFloat(veri.data[5][1]); // 0.9092
+            const iscilikliCarpanSatis = parseFloat(veri.data[5][2]); // 1.060
+            document.getElementById('kapalisi').textContent = Math.round(haremAlis * iscilikliCarpanAlis);
+            document.getElementById('kapsatisi').textContent = Math.round(haremSatis * iscilikliCarpanSatis);
             
             // 14 Ayar (satır 6)
-            document.getElementById('14alisi').textContent = veri.data[6][1] || '0';
-            document.getElementById('14satisi').textContent = veri.data[6][2] || '0';
+            const onDortCarpanAlis = parseFloat(veri.data[6][1]); // 0.5675
+            const onDortCarpanSatis = parseFloat(veri.data[6][2]); // 0.6847
+            document.getElementById('14alisi').textContent = Math.round(haremAlis * onDortCarpanAlis);
+            document.getElementById('14satisi').textContent = Math.round(haremSatis * onDortCarpanSatis);
             
-            // Beşli (satır 7)
-            document.getElementById('besalisi').textContent = veri.data[7][1] || '0';
-            document.getElementById('bessatisi').textContent = veri.data[7][2] || '0';
+            // Beşli (satır 7) - 36.00gr olduğu için ayrı hesapla
+            const besliCarpanAlis = parseFloat(veri.data[7][1]); // 32.825
+            const besliCarpanSatis = parseFloat(veri.data[7][2]); // 33.40
+            // 36gr × çarpan
+            document.getElementById('besalisi').textContent = Math.round(36 * besliCarpanAlis);
+            document.getElementById('bessatisi').textContent = Math.round(36 * besliCarpanSatis);
             
-            // Tam Ata (satır 8)
-            document.getElementById('tlalisi').textContent = veri.data[8][1] || '0';
-            document.getElementById('tlsatisi').textContent = veri.data[8][2] || '0';
+            // Tam Ata (satır 8) - 7.20gr
+            const ataCarpanAlis = parseFloat(veri.data[8][1]); // 6.565
+            const ataCarpanSatis = parseFloat(veri.data[8][2]); // 6.68
+            document.getElementById('tlalisi').textContent = Math.round(7.2 * ataCarpanAlis);
+            document.getElementById('tlsatisi').textContent = Math.round(7.2 * ataCarpanSatis);
             
-            // Tam Ziynet (satır 9)
-            document.getElementById('tzalisi').textContent = veri.data[9][1] || '0';
-            document.getElementById('tzsatisi').textContent = veri.data[9][2] || '0';
+            // Tam Ziynet (satır 9) - 7.00gr
+            const ziynetCarpanAlis = parseFloat(veri.data[9][1]); // 6.48
+            const ziynetCarpanSatis = parseFloat(veri.data[9][2]); // 6.524
+            document.getElementById('tzalisi').textContent = Math.round(7 * ziynetCarpanAlis);
+            document.getElementById('tzsatisi').textContent = Math.round(7 * ziynetCarpanSatis);
             
-            // Yarım (satır 10)
-            document.getElementById('yalisi').textContent = veri.data[10][1] || '0';
-            document.getElementById('ysatisi').textContent = veri.data[10][2] || '0';
+            // Yarım (satır 10) - 3.50gr
+            const yarimCarpanAlis = parseFloat(veri.data[10][1]); // 3.24
+            const yarimCarpanSatis = parseFloat(veri.data[10][2]); // 3.262
+            document.getElementById('yalisi').textContent = Math.round(3.5 * yarimCarpanAlis);
+            document.getElementById('ysatisi').textContent = Math.round(3.5 * yarimCarpanSatis);
             
-            // Çeyrek (satır 11)
-            document.getElementById('calisi').textContent = veri.data[11][1] || '0';
-            document.getElementById('csatisi').textContent = veri.data[11][2] || '0';
+            // Çeyrek (satır 11) - 1.75gr
+            const ceyrekCarpanAlis = parseFloat(veri.data[11][1]); // 1.62
+            const ceyrekCarpanSatis = parseFloat(veri.data[11][2]); // 1.631
+            document.getElementById('calisi').textContent = Math.round(1.75 * ceyrekCarpanAlis);
+            document.getElementById('csatisi').textContent = Math.round(1.75 * ceyrekCarpanSatis);
             
-            // Reşat Yarım (satır 12)
-            document.getElementById('rsyalisi').textContent = veri.data[12][1] || '0';
-            document.getElementById('rsysatisi').textContent = veri.data[12][2] || '0';
+            // Reşat Yarım (satır 12) - gramajı?
+            const resatYarimCarpanAlis = parseFloat(veri.data[12][1]); // 2.56
+            const resatYarimCarpanSatis = parseFloat(veri.data[12][2]); // 2.82
+            // Reşat yarım genelde 3.2gr, deneyelim:
+            document.getElementById('rsyalisi').textContent = Math.round(3.2 * resatYarimCarpanAlis);
+            document.getElementById('rsysatisi').textContent = Math.round(3.2 * resatYarimCarpanSatis);
             
-            // Reşat Çeyrek (satır 13)
-            document.getElementById('rscalisi').textContent = veri.data[13][1] || '0';
-            document.getElementById('rscsatisi').textContent = veri.data[13][2] || '0';
+            // Reşat Çeyrek (satır 13) - gramajı?
+            const resatCeyrekCarpanAlis = parseFloat(veri.data[13][1]); // 1.28
+            const resatCeyrekCarpanSatis = parseFloat(veri.data[13][2]); // 1.41
+            // Reşat çeyrek genelde 1.6gr, deneyelim:
+            document.getElementById('rscalisi').textContent = Math.round(1.6 * resatCeyrekCarpanAlis);
+            document.getElementById('rscsatisi').textContent = Math.round(1.6 * resatCeyrekCarpanSatis);
             
-            // Gram Altın (satır 14)
-            document.getElementById('gralisi').textContent = veri.data[14][1] || '0';
-            document.getElementById('grsatisi').textContent = veri.data[14][2] || '0';
+            // Gram Altın (satır 14) - 1gr
+            const gramCarpanAlis = parseFloat(veri.data[14][1]); // 0.995
+            const gramCarpanSatis = parseFloat(veri.data[14][2]); // 1.023
+            document.getElementById('gralisi').textContent = Math.round(haremAlis * gramCarpanAlis);
+            document.getElementById('grsatisi').textContent = Math.round(haremSatis * gramCarpanSatis);
             
-            // Ons (satır 15)
-            document.getElementById('onsalisi').textContent = veri.data[15][1] || '0';
-            document.getElementById('onssatisi').textContent = veri.data[15][2] || '0';
+            // ONS, DOLAR, EURO direkt göster (satır 15-17)
+            document.getElementById('onsalisi').textContent = veri.data[15][1];
+            document.getElementById('onssatisi').textContent = veri.data[15][2];
+            document.getElementById('dolaralisi').textContent = veri.data[16][1];
+            document.getElementById('dolarsatisi').textContent = veri.data[16][2];
+            document.getElementById('euroalisi').textContent = veri.data[17][1];
+            document.getElementById('eurosatisi').textContent = veri.data[17][2];
             
-            // Dolar (satır 16)
-            document.getElementById('dolaralisi').textContent = veri.data[16][1] || '0';
-            document.getElementById('dolarsatisi').textContent = veri.data[16][2] || '0';
-            
-            // Euro (satır 17)
-            document.getElementById('euroalisi').textContent = veri.data[17][1] || '0';
-            document.getElementById('eurosatisi').textContent = veri.data[17][2] || '0';
+            // HAS için direkt harem fiyatını göster (zaten çarpmamız gerekmiyor)
+            document.getElementById('haremalisi').textContent = haremAlis;
+            document.getElementById('haremsatisi').textContent = haremSatis;
             
             // Başarılı mesajı
             document.getElementById('fiyat_zaman_doviz').innerHTML = 
