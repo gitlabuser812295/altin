@@ -693,95 +693,95 @@ async function loadAltinFiyatlari() {
         const veri = await response.json();
         
         if (veri.data && veri.data.length > 0) {
-            // Harem Altın fiyatını al (ana çarpan)
-            const haremAlis = parseFloat(veri.data[1][1]); // 6290
-            const haremSatis = parseFloat(veri.data[1][2]); // 6328
+            // Harem Altın (satır 1) - Direkt göster
+            document.getElementById('haremalisi').textContent = veri.data[1][1];
+            document.getElementById('haremsatisi').textContent = veri.data[1][2];
             
-            // HAREKETLİ ÇARPMA İŞLEMLERİ:
-            // Harem altını çarpanlarla çarp!
+            // HAS (satır 2) - Harem × çarpan
+            const haremAlis = parseFloat(veri.data[1][1]);
+            const haremSatis = parseFloat(veri.data[1][2]);
             
-            // Has (satır 2) - ÇEKME HAS
-            const hasCarpanAlis = parseFloat(veri.data[2][1]); // 0.998
-            const hasCarpanSatis = parseFloat(veri.data[2][2]); // 1.0015
+            const hasCarpanAlis = parseFloat(veri.data[2][1]);
+            const hasCarpanSatis = parseFloat(veri.data[2][2]);
             document.getElementById('halisi').textContent = Math.round(haremAlis * hasCarpanAlis);
             document.getElementById('hsatisi').textContent = Math.round(haremSatis * hasCarpanSatis);
             
             // Tel (satır 3) - BURMA
-            const telCarpanAlis = parseFloat(veri.data[3][1]); // 0.9092
-            const telCarpanSatis = parseFloat(veri.data[3][2]); // 0.940
+            const telCarpanAlis = parseFloat(veri.data[3][1]);
+            const telCarpanSatis = parseFloat(veri.data[3][2]);
             document.getElementById('telalisi').textContent = Math.round(haremAlis * telCarpanAlis);
             document.getElementById('telsatisi').textContent = Math.round(haremSatis * telCarpanSatis);
             
             // Mega (satır 4) - CNC BİLEZİK
-            const megaCarpanAlis = parseFloat(veri.data[4][1]); // 0.9092
-            const megaCarpanSatis = parseFloat(veri.data[4][2]); // 0.950
+            const megaCarpanAlis = parseFloat(veri.data[4][1]);
+            const megaCarpanSatis = parseFloat(veri.data[4][2]);
             document.getElementById('megalisi').textContent = Math.round(haremAlis * megaCarpanAlis);
             document.getElementById('megsatisi').textContent = Math.round(haremSatis * megaCarpanSatis);
             
             // İşçilikli (satır 5) - FANTAZİ
-            const iscilikliCarpanAlis = parseFloat(veri.data[5][1]); // 0.9092
-            const iscilikliCarpanSatis = parseFloat(veri.data[5][2]); // 1.060
+            const iscilikliCarpanAlis = parseFloat(veri.data[5][1]);
+            const iscilikliCarpanSatis = parseFloat(veri.data[5][2]);
             document.getElementById('kapalisi').textContent = Math.round(haremAlis * iscilikliCarpanAlis);
             document.getElementById('kapsatisi').textContent = Math.round(haremSatis * iscilikliCarpanSatis);
             
             // 14 Ayar (satır 6)
-            const onDortCarpanAlis = parseFloat(veri.data[6][1]); // 0.5675
-            const onDortCarpanSatis = parseFloat(veri.data[6][2]); // 0.6847
+            const onDortCarpanAlis = parseFloat(veri.data[6][1]);
+            const onDortCarpanSatis = parseFloat(veri.data[6][2]);
             document.getElementById('14alisi').textContent = Math.round(haremAlis * onDortCarpanAlis);
             document.getElementById('14satisi').textContent = Math.round(haremSatis * onDortCarpanSatis);
             
-            // Beşli (satır 7) - 36.00gr olduğu için ayrı hesapla
-            const besliCarpanAlis = parseFloat(veri.data[7][1]); // 32.825
-            const besliCarpanSatis = parseFloat(veri.data[7][2]); // 33.40
-            // 36gr × çarpan
-            document.getElementById('besalisi').textContent = Math.round(36 * besliCarpanAlis);
-            document.getElementById('bessatisi').textContent = Math.round(36 * besliCarpanSatis);
+            // BEŞLİ, ATA, ZİYNET, YARIM, ÇEYREK - BU SAYILAR ZATEN TL! GRAMAJLA ÇARP!
+            // Beşli (satır 7) - 36.00gr için
+            const besliFiyatAlis = parseFloat(veri.data[7][1]); // 32.825 (1gr fiyatı)
+            const besliFiyatSatis = parseFloat(veri.data[7][2]); // 33.40
+            document.getElementById('besalisi').textContent = Math.round(36 * besliFiyatAlis);
+            document.getElementById('bessatisi').textContent = Math.round(36 * besliFiyatSatis);
             
-            // Tam Ata (satır 8) - 7.20gr
-            const ataCarpanAlis = parseFloat(veri.data[8][1]); // 6.565
-            const ataCarpanSatis = parseFloat(veri.data[8][2]); // 6.68
-            document.getElementById('tlalisi').textContent = Math.round(7.2 * ataCarpanAlis);
-            document.getElementById('tlsatisi').textContent = Math.round(7.2 * ataCarpanSatis);
+            // Tam Ata (satır 8) - 7.20gr için
+            const ataFiyatAlis = parseFloat(veri.data[8][1]); // 6.565
+            const ataFiyatSatis = parseFloat(veri.data[8][2]); // 6.68
+            document.getElementById('tlalisi').textContent = Math.round(7.2 * ataFiyatAlis);
+            document.getElementById('tlsatisi').textContent = Math.round(7.2 * ataFiyatSatis);
             
-            // Tam Ziynet (satır 9) - 7.00gr
-            const ziynetCarpanAlis = parseFloat(veri.data[9][1]); // 6.48
-            const ziynetCarpanSatis = parseFloat(veri.data[9][2]); // 6.524
-            document.getElementById('tzalisi').textContent = Math.round(7 * ziynetCarpanAlis);
-            document.getElementById('tzsatisi').textContent = Math.round(7 * ziynetCarpanSatis);
+            // Tam Ziynet (satır 9) - 7.00gr için
+            const ziynetFiyatAlis = parseFloat(veri.data[9][1]); // 6.48
+            const ziynetFiyatSatis = parseFloat(veri.data[9][2]); // 6.524
+            document.getElementById('tzalisi').textContent = Math.round(7 * ziynetFiyatAlis);
+            document.getElementById('tzsatisi').textContent = Math.round(7 * ziynetFiyatSatis);
             
-            // Yarım (satır 10) - 3.50gr
-            const yarimCarpanAlis = parseFloat(veri.data[10][1]); // 3.24
-            const yarimCarpanSatis = parseFloat(veri.data[10][2]); // 3.262
-            document.getElementById('yalisi').textContent = Math.round(3.5 * yarimCarpanAlis);
-            document.getElementById('ysatisi').textContent = Math.round(3.5 * yarimCarpanSatis);
+            // Yarım (satır 10) - 3.50gr için
+            const yarimFiyatAlis = parseFloat(veri.data[10][1]); // 3.24
+            const yarimFiyatSatis = parseFloat(veri.data[10][2]); // 3.262
+            document.getElementById('yalisi').textContent = Math.round(3.5 * yarimFiyatAlis);
+            document.getElementById('ysatisi').textContent = Math.round(3.5 * yarimFiyatSatis);
             
-            // Çeyrek (satır 11) - 1.75gr
-            const ceyrekCarpanAlis = parseFloat(veri.data[11][1]); // 1.62
-            const ceyrekCarpanSatis = parseFloat(veri.data[11][2]); // 1.631
-            document.getElementById('calisi').textContent = Math.round(1.75 * ceyrekCarpanAlis);
-            document.getElementById('csatisi').textContent = Math.round(1.75 * ceyrekCarpanSatis);
+            // Çeyrek (satır 11) - 1.75gr için
+            const ceyrekFiyatAlis = parseFloat(veri.data[11][1]); // 1.62
+            const ceyrekFiyatSatis = parseFloat(veri.data[11][2]); // 1.631
+            document.getElementById('calisi').textContent = Math.round(1.75 * ceyrekFiyatAlis);
+            document.getElementById('csatisi').textContent = Math.round(1.75 * ceyrekFiyatSatis);
             
-            // Reşat Yarım (satır 12) - gramajı?
-            const resatYarimCarpanAlis = parseFloat(veri.data[12][1]); // 2.56
-            const resatYarimCarpanSatis = parseFloat(veri.data[12][2]); // 2.82
-            // Reşat yarım genelde 3.2gr, deneyelim:
-            document.getElementById('rsyalisi').textContent = Math.round(3.2 * resatYarimCarpanAlis);
-            document.getElementById('rsysatisi').textContent = Math.round(3.2 * resatYarimCarpanSatis);
+            // Reşat Yarım (satır 12) - Reşat için farklı gramaj olabilir
+            // Orijinal sitede: 16105 gözüküyor, bizde: 8
+            // Burada problem var! 2.56 × ? = 16105 olmalı
+            // Yani gramaj: 16105 ÷ 2.56 ≈ 6291gr ❌ BU İMKANSIZ!
             
-            // Reşat Çeyrek (satır 13) - gramajı?
-            const resatCeyrekCarpanAlis = parseFloat(veri.data[13][1]); // 1.28
-            const resatCeyrekCarpanSatis = parseFloat(veri.data[13][2]); // 1.41
-            // Reşat çeyrek genelde 1.6gr, deneyelim:
-            document.getElementById('rscalisi').textContent = Math.round(1.6 * resatCeyrekCarpanAlis);
-            document.getElementById('rscsatisi').textContent = Math.round(1.6 * resatCeyrekCarpanSatis);
+            // REŞAT HESABI YANLIŞ! Google Sheets'teki sayılar ne?
+            const resatYarimAlis = parseFloat(veri.data[12][1]); // 2.56
+            const resatYarimSatis = parseFloat(veri.data[12][2]); // 2.82
+            // BU SAYILAR ÇOK KÜÇÜK! Gramajla çarpınca 8 çıkıyor ama 16105 olmalı!
             
-            // Gram Altın (satır 14) - 1gr
+            // Reşat Çeyrek (satır 13) - Aynı problem
+            const resatCeyrekAlis = parseFloat(veri.data[13][1]); // 1.28
+            const resatCeyrekSatis = parseFloat(veri.data[13][2]); // 1.41
+            
+            // Gram Altın (satır 14) - 1gr, harem ile çarp
             const gramCarpanAlis = parseFloat(veri.data[14][1]); // 0.995
             const gramCarpanSatis = parseFloat(veri.data[14][2]); // 1.023
             document.getElementById('gralisi').textContent = Math.round(haremAlis * gramCarpanAlis);
             document.getElementById('grsatisi').textContent = Math.round(haremSatis * gramCarpanSatis);
             
-            // ONS, DOLAR, EURO direkt göster (satır 15-17)
+            // ONS, DOLAR, EURO direkt (satır 15-17)
             document.getElementById('onsalisi').textContent = veri.data[15][1];
             document.getElementById('onssatisi').textContent = veri.data[15][2];
             document.getElementById('dolaralisi').textContent = veri.data[16][1];
@@ -789,11 +789,7 @@ async function loadAltinFiyatlari() {
             document.getElementById('euroalisi').textContent = veri.data[17][1];
             document.getElementById('eurosatisi').textContent = veri.data[17][2];
             
-            // HAS için direkt harem fiyatını göster (zaten çarpmamız gerekmiyor)
-            document.getElementById('haremalisi').textContent = haremAlis;
-            document.getElementById('haremsatisi').textContent = haremSatis;
-            
-            // Başarılı mesajı
+            // BAŞARI MESAJI
             document.getElementById('fiyat_zaman_doviz').innerHTML = 
                 '<font color="green">✅ Veriler güncel</font>';
         }
