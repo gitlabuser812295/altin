@@ -626,63 +626,81 @@ div.b-mobile {display:none;}
         }
       });
     </script>
-    <div class="container">
-      <div id="sidebar">
-      </div>
-      <div class="main-content">
-        <div class="ustBG">
-          <a href="#" data-toggle=".container" id="sidebar-toggle">          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-</a>
-          <div id="headeri">
-            <div id="flash">
-              <a class="hLogo" href="/" title="Mardin Altın Fiyatları">              <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgg7PjBFH73MBAsZoxjavw0-o2ZYOZajikH-ifW12j-JUwCpLhBe_ec7QUKMDEO158QGuThXtQnsT4sfWV9RbnYeeBeRv5IPojugIZZ3cLBZXXQCAB73ZSzaoJBVYTLs0nAIz5Q7KV2eF6o9-o11ZGZDqQC9LQI2H6Ixz6kLsuQ_nYWQt8K_umf0ZGGWfjj/s1600/MardinAltinFiyatlari.png" alt="Mardin Altın Fiyatları" width="540" height="100" />
-</a>
+<div class="container">
+  <div id="sidebar">
+  </div>
+  <div class="main-content">
+    <div class="ustBG">
+      <a href="#" data-toggle=".container" id="sidebar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div id="headeri">
+        <div id="header-right">
+          <style>
+            /* Sabit, altın renkli yazı */
+            .blink {
+              animation: none !important;   /* animasyonu iptal et */
+              opacity: 1 !important;        /* tam görünür */
+              color: #FFD700;               /* altın rengi */
+              font-size: 30px;
+              font-weight: bold;
+              font-family: sans-serif;
+            }
+          </style>
+          <h1>
+            <!--tarih-->
+            <script language="JavaScript">
+              <!-- 
+              var now = new Date(); 
+              var yr = now.getYear(); 
+              var mName = now.getMonth() + 1; 
+              var dName = now.getDay() + 1; 
+              var yr_str = " 19"; 
+              var dayNr = ((now.getDate()<10) ? "" : "") + now.getDate(); 
+              if(dName==1) Day = "Pazar"; 
+              if(dName==2) Day = "Pazartesi"; 
+              if(dName==3) Day = "Salı"; 
+              if(dName==4) Day = "Çarşamba"; 
+              if(dName==5) Day = "Perşembe"; 
+              if(dName==6) Day = "HAYIRLI CUMALAR"; 
+              if(dName==7) Day = "Cumartesi"; 
+              if(mName==1) Month="Ocak"; 
+              if(mName==2) Month="Şubat"; 
+              if(mName==3) Month="Mart"; 
+              if(mName==4) Month="Nisan"; 
+              if(mName==5) Month="Mayıs"; 
+              if(mName==6) Month="Haziran"; 
+              if(mName==7) Month="Temmuz"; 
+              if(mName==8) Month="Ağustos"; 
+              if(mName==9) Month="Eylül"; 
+              if(mName==10) Month="Ekim"; 
+              if(mName==11) Month="Kasım"; 
+              if(mName==12) Month="Aralık"; 
+              if ( yr > 99 ) { 
+                yr_str = " "; 
+                if ( yr < 2000 ) yr += 1900; 
+              }
+              var todaysDate = (" " + dayNr + " " + Month + yr_str + yr + ", " + Day); 
+              document.open(); 
+              document.write("<FONT face=arial SIZE=4 color=white>" + todaysDate + "</FONT>");
+              // -->
+            </script>
+            <!--tarih son-->
+
+            <!-- Sabit altın renkli başlık -->
+            <div class="hour" id="fiyat_zaman_doviz">
+              <span class="blink">KIZILTEPE KUYUMCULAR DERNEĞİ</span>
             </div>
-            <div id="header-right">
-              <style>
-                .blink {
-      animation: blinker 0.9s linear infinite;
-      color: red;
-      font-size: 30px;
-      font-weight: bold;
-      font-family: sans-serif;
-      }
-      @keyframes blinker {  
-      50% { opacity: 0; }
-      }
-              </style>
-              <h1>
-                <!--tarih-->
-                <script language="JavaScript">
-                  &lt;!-- 
-var now = new Date(); var yr = now.getYear(); var mName = now.getMonth() + 1; var dName = now.getDay() + 1; 
-var yr_str = &#34; 19&#34;; // yil 2000 iken, 19 sayisinin cikmamasini saglayacak string 
-var dayNr = ((now.getDate()&lt;10) ? &#34;&#34; : &#34;&#34;)+ now.getDate(); if(dName==1) Day = &#34;Pazar&#34;; if(dName==2) Day = &#34;Pazartesi&#34;; if(dName==3) Day = &#34;Salı&#34;; if(dName==4) Day = &#34;Çarşamba&#34;; if(dName==5) Day = &#34;Perşembe&#34;; if(dName==6) Day = &#34;HAYIRLI CUMALAR&#34;; if(dName==7) Day = &#34;Cumartesi&#34;; if(mName==1) Month=&#34;Ocak&#34;; if(mName==2) Month=&#34;Şubat&#34;; if(mName==3) Month=&#34;Mart&#34;; 
-if(mName==4) Month=&#34;Nisan&#34;; if(mName==5) Month=&#34;Mayıs&#34;; if(mName==6) Month=&#34;Haziran&#34;; if(mName==7) Month=&#34;Temmuz&#34;; if(mName==8) Month=&#34;Ağustos&#34;; if(mName==9) Month=&#34;Eylül&#34;; 
-if(mName==10) Month=&#34;Ekim&#34;; if(mName==11) Month=&#34;Kasım&#34;; if(mName==12) Month=&#34;Aralık&#34;; 
-if ( yr &gt; 99 ) 
-{ 
-yr_str =&#34; &#34;; 
-if ( yr &lt; 2000 ) yr += 1900; 
-}var todaysDate =(&#34; &#34; + dayNr + &#34; &#34; + Month + yr_str + yr + &#34;&#34; + &#34;, &#34; + Day + &#34;&#34;); document.open(); document.write(&#34;&lt;FONT face=arial SIZE=4 color=white&gt;&#34;+todaysDate+&#34;&lt;/FONT&gt;&#34;);// --&gt;
-                </script>
-                <!--tarih son-->
-                <div class="hour" id="fiyat_zaman_doviz">
-                  <font class="blink">
-                    Veriler alınıyor. Lütfen Bekleyin!
-                  </font>
-                </div>
-                <marquee scrollamount="3" onmouseover="this.scrollAmount=0" direction="left" width="100%" scrolldelay="1">
-                  Fiyatlarımız Tavsiye Niteliğindedir.
-                </marquee>
-              </h1>
-            </div>
-          </div>
+
+          </h1>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
     <div class="content">
       <meta http-equiv="refresh" content="6000" />
       <!--javascript start -->
