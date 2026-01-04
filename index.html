@@ -799,13 +799,10 @@ if ( yr &lt; 2000 ) yr += 1900;
           </div>
         </div>
         <style>
-          .blink_instagram {
-animation: blinker 10s linear infinite;
+.blink_instagram {
+    animation: none !important;
+    opacity: 1 !important; /* görünmesini garanti etmek için */
 }
-@keyframes blinker {
-10% {
-opacity: 0;
- }
                 }
         </style>
         <div id="satir1">
