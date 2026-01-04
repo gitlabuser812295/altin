@@ -648,6 +648,14 @@ div.b-mobile {display:none;}
               font-weight: bold;
               font-family: sans-serif;
             }
+            /* Güncelleme zamanı için küçük ek stil */
+            #updateTime {
+              color: #FFD700;
+              font-size: 20px;
+              display: block;
+              margin-top: 5px;
+              text-align: center;
+            }
           </style>
           <h1>
             <!--tarih-->
@@ -692,6 +700,8 @@ div.b-mobile {display:none;}
             <!-- Sabit altın renkli başlık -->
             <div class="hour" id="fiyat_zaman_doviz">
               <span class="blink">KIZILTEPE KUYUMCULAR DERNEĞİ</span>
+              <!-- Güncelleme zamanı yazısı eklendi -->
+              <span id="updateTime"></span>
             </div>
 
           </h1>
@@ -701,6 +711,18 @@ div.b-mobile {display:none;}
   </div>
 </div>
 
+<script>
+  // Bu fonksiyonu veriler alındıktan sonra çağır
+  function showUpdateTime(apiTimeString) {
+    var updateSpan = document.getElementById('updateTime');
+    if(updateSpan){
+      updateSpan.textContent = "Güncelleme Zamanı: " + apiTimeString;
+    }
+  }
+
+  // Örnek kullanım (API'den gelen zamanı buraya koy)
+  // showUpdateTime("21:45:02");
+</script>
     <div class="content">
       <meta http-equiv="refresh" content="6000" />
       <!--javascript start -->
