@@ -641,9 +641,9 @@ div.b-mobile {display:none;}
           <style>
             /* Sabit, altın renkli yazı */
             .blink {
-              animation: none !important;   
-              opacity: 1 !important;        
-              color: #FFD700;               
+              animation: none !important;   /* animasyonu iptal et */
+              opacity: 1 !important;        /* tam görünür */
+              color: #FFD700;               /* altın rengi */
               font-size: 30px;
               font-weight: bold;
               font-family: sans-serif;
@@ -700,25 +700,6 @@ div.b-mobile {display:none;}
     </div>
   </div>
 </div>
-
-<script>
-  // Bu fonksiyon, saat bilgisi geldiğinde "Güncelleme Zamanı:" ekler
-  function addUpdateText() {
-    var fiyatDiv = document.getElementById('fiyat_zaman_doviz');
-    if(fiyatDiv){
-      var metin = fiyatDiv.textContent.trim();
-      // Eğer içerik KIZILTEPE değilse ve "Güncelleme Zamanı:" eklenmemişse
-      if(!metin.includes("KIZILTEPE") && !metin.includes("Güncelleme Zamanı:")){
-        fiyatDiv.textContent = "Güncelleme Zamanı: " + metin;
-      }
-    }
-  }
-
-  // Örnek: veriler alındığında çağır
-  // showUpdateTimeFromAPI(); // API verisini işleyen kendi fonksiyonunun sonunda ekle
-  // addUpdateText(); // Eğer manuel delay ile test ediyorsan:
-  setTimeout(addUpdateText, 15000); // 2 saniye sonra kontrol eder
-</script>
     <div class="content">
       <meta http-equiv="refresh" content="6000" />
       <!--javascript start -->
